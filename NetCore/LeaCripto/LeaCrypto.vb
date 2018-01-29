@@ -750,6 +750,10 @@ Public Class LeaCryptoEngine
         Dim blnOk As Boolean
         Dim intInterator As Integer
 
+        Dim intAuxSize As Integer
+        Dim intAuxRotations As Integer
+        Dim blnAuxDirection As Boolean
+
         Try
 
             objReturn = New List(Of clsPairKey)
@@ -767,10 +771,15 @@ Public Class LeaCryptoEngine
                 blnOk = False
                 Do While blnOk = False
 
-                    objReturn.Add(New clsPairKey(fnGetNumberByKey(strBaseKey, intInterator), fnGetNumberByKey(strPrimaryKey, intInterator), If(fnGetNumberByKey(strSecondaryKey, intInterator) Mod 2 = 0, True, False)))
+                    intAuxSize = fnGetNumberByKey(strBaseKey, intInterator, 32) 'Block size limited by 32 bits
+                    intAuxRotations = fnGetNumberByKey(strPrimaryKey, intInterator, intAuxSize - 1) 'Limit rotation by size minus 1
+                    blnAuxDirection = If(fnGetNumberByKey(strSecondaryKey, intInterator, 32) Mod 2 = 0, True, False)
+
+                    objReturn.Add(New clsPairKey(intAuxSize, intAuxRotations, blnAuxDirection))
 
                     If objReturn.Last.blockSize >= intTotalSize Then
                         objReturn.Last.blockSize = intTotalSize
+                        objReturn.Last.rotations = fnGetNumberByKey(strPrimaryKey, intInterator, objReturn.Last.blockSize - 1)
                         intTotalSize = p_intSize
                         blnOk = True
                     Else
@@ -789,7 +798,7 @@ Public Class LeaCryptoEngine
         End Try
     End Function
 
-    Private Shared Function fnGetNumberByKey(ByVal p_strKey As String, ByVal p_intNumber As String) As Integer
+    Private Shared Function fnGetNumberByKey(ByVal p_strKey As String, ByVal p_intNumber As String, p_intLimit As Integer) As Integer
 
         Dim intReturn As Integer
         Dim intNumber As Integer
@@ -813,13 +822,13 @@ Public Class LeaCryptoEngine
 
             intReturn = objAuxBytes(intNumber)
 
-            'limit to 1 ~ 32
+            'limit to 1 ~ p_intLimit
             If intReturn = 0 Then
                 intReturn = 1
             End If
-            Do While intReturn > 32
-                If intReturn > 32 Then
-                    intReturn = intReturn - 32
+            Do While intReturn > p_intLimit
+                If intReturn > p_intLimit Then
+                    intReturn = intReturn - p_intLimit
                 End If
             Loop
 
