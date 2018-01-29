@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "LeaCrypto", "LeaCripto\LeaCrypto.vbproj", "{A25A0962-C075-4E28-A6D6-7EDC5CD1ECA9}"
+EndProject
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "Test", "Test\Test.vbproj", "{5C30A796-E11C-4966-88B0-9D1409FBBDB6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A25A0962-C075-4E28-A6D6-7EDC5CD1ECA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A25A0962-C075-4E28-A6D6-7EDC5CD1ECA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A25A0962-C075-4E28-A6D6-7EDC5CD1ECA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A25A0962-C075-4E28-A6D6-7EDC5CD1ECA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C30A796-E11C-4966-88B0-9D1409FBBDB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C30A796-E11C-4966-88B0-9D1409FBBDB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C30A796-E11C-4966-88B0-9D1409FBBDB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C30A796-E11C-4966-88B0-9D1409FBBDB6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {57A2DB75-04B9-44EC-9707-9CD361E74BFE}
+	EndGlobalSection
+EndGlobal
